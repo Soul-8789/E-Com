@@ -1,18 +1,17 @@
 import React from "react";
-import { BrowserRouter,Routes,Route } from "react-router-dom";
-import Home from "./Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./About";
-import Product from "./Products";
+import Home from "./Home";
+import Products from "./Products";
 import Contact from "./Contact";
 import Cart from "./Cart";
-import SingleProduct from "./SingleProduct"
+import SingleProduct from "./SingleProduct";
 import Error from "./Error";
 import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider } from "styled-components";
-
+import Header from "./components/Header";
 
 const App = () => {
-
   const theme = {
     colors: {
       heading: "rgb(24 24 29)",
@@ -38,23 +37,23 @@ const App = () => {
     },
   };
 
-   return (
+  return (
     <ThemeProvider theme={theme}>
-<BrowserRouter>
-    <GlobalStyle />
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/about" element={<About/>}/>
-        <Route path="/products" element={<Product/>}/>
-        <Route path="/contact" element={<Contact/>}/>
-        <Route path="/cart" element={<Cart/>}/>
-        <Route path="/singleproduct/:id" element={<SingleProduct/>}/>
-        <Route path="*" element={<Error/>}/>
-      </Routes>
-    </BrowserRouter>
+      <Router>
+        <GlobalStyle />
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/singleproduct/:id" element={<SingleProduct />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </Router>
     </ThemeProvider>
-    
-   );
+  );
 };
 
 export default App;
